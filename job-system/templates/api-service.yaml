@@ -8,5 +8,5 @@ spec:
   ports: 
     - protocol: TCP
       port: 80
-      targetPorts: {{ .Values.api.port }}
+      targetPort: {{ .Values.api.port }}
   type: ClusterIP

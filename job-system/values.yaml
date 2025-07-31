@@ -6,6 +6,13 @@ api:
     tag: local
     pullPolicy: IfNotPresent
 
+jobCreator:
+  name: job-creator
+  image: 
+    repository: job-creator
+    tag: local
+    pullPolicy: IfNotPresent
+
 pvc: 
   name: jobs-pvc
   storage: 1Gi

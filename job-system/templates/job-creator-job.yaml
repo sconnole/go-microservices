@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata: 
+  name: {{ .Values.jobCreator.name }}
+spec:
+  completions: 40
+  parrallelism: 4
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.jobCreator.name }}
+    spec: 
+      containers: 
+        - name: {{ .Values.jobCreator.name }}
+          image: "{{ .Values.jobCreator.image.repository}}:{{ .Values.api.image.tag }}"
+      restartPolicy: OnFailure 
