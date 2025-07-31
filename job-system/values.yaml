@@ -13,6 +13,15 @@ jobCreator:
     tag: local
     pullPolicy: IfNotPresent
 
+tinyLlamaInit: 
+  image: 
+    repository: tiny-llama-init
+    tag: local
+    pullPolicy: IfNotPresent
+
+ollama: 
+  serviceName: ollama
+
 pvc: 
   name: jobs-pvc
   storage: 1Gi
