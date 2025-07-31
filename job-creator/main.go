@@ -14,7 +14,7 @@ type Job struct {
 }
 
 func main() {
-	fakeSentence := faker.Word()
+	fakeSentence := faker.Name()
 
 	job := Job{Data: fakeSentence}
 	jsonData, err := json.Marshal(job)
