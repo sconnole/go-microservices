@@ -47,8 +47,8 @@ func initDB() *sql.DB {
 func setupRouter(db *sql.DB) *gin.Engine {
 	router := gin.Default()
 
-	router.GET("/next-job", func(c *gin.Context) {
-		getJobsHandler(c, db)
+	router.GET("/random-job", func(c *gin.Context) {
+		getRandomJobHandler(c, db)
 	})
 
 	router.POST("/jobs", func(c *gin.Context) {
@@ -58,15 +58,14 @@ func setupRouter(db *sql.DB) *gin.Engine {
 	return router
 }
 
-func getJobsHandler(c *gin.Context, db *sql.DB) {
+func getRandomJobHandler(c *gin.Context, db *sql.DB) {
 	var job Job
 	var createdAt string
 
 	err := db.QueryRow(`
 		SELECT id, data, status, created_at
 		FROM jobs
-		WHERE status = 'PENDING'
-		ORDER BY created_at ASC
+		ORDER BY RANDOM() ASC
 		LIMIT 1
 	`).Scan(&job.ID, &job.Data, &job.Status, &createdAt)
 

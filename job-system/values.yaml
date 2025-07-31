@@ -19,6 +19,13 @@ tinyLlamaInit:
     tag: local
     pullPolicy: IfNotPresent
 
+poemGenerator: 
+  schedule: "*/5 * * * *"
+  image: 
+    repository: poem-generator
+    tag: local
+    pullPolicy: IfNotPresent
+
 ollama: 
   serviceName: ollama
 

@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: poem-generator
+spec:
+  schedule: "{{ .Values.poemGenerator.schedule }}" 
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: poem-generator
+              image: "{{ .Values.poemGenerator.image.repository }}:{{ .Values.poemGenerator.image.tag }}"
+              imagePullPolicy: {{ .Values.tinyLlamaInit.image.pullPolicy }}
+              env:
+                - name: OLLAMA_URL
+                  value: "http://{{ .Values.ollama.serviceName }}.{{ .Release.Namespace }}.svc.cluster.local:11434"
+          restartPolicy: Never
