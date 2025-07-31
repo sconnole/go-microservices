@@ -1,0 +1,12 @@
+api:
+  port: 8080
+  name: api
+  image:
+    repository: api 
+    tag: local
+    pullPolicy: IfNotPresent
+
+pvc: 
+  name: jobs-pvc
+  storage: 1Gi
+  mountPath: /app/data
